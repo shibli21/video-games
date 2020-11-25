@@ -1,10 +1,18 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import { QueryCache, ReactQueryCacheProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query-devtools";
+import theme from "../theme/theme";
+
+export const queryCache = new QueryCache();
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider resetCSS>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <ReactQueryCacheProvider queryCache={queryCache}>
+      <ChakraProvider resetCSS theme={theme}>
+        <Component {...pageProps} />
+        <ReactQueryDevtools />
+      </ChakraProvider>
+    </ReactQueryCacheProvider>
   );
 }
 
