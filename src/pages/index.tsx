@@ -1,12 +1,6 @@
-import {
-  Box,
-  Container,
-  FormControl,
-  Grid,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Container, FormControl, Input, Text } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
+import { Router, useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import Game from "../components/Game";
 import GameList from "../components/GameList";
@@ -16,6 +10,7 @@ import useSearchGames from "../hooks/useSearchGames";
 import useUpcomingGames from "../hooks/useUpcomingGames";
 
 export default function Home() {
+  const router = useRouter();
   const upcomingGames = useUpcomingGames();
   const popularGames = usePopularGames();
   const newGames = useNewGames();
@@ -23,7 +18,7 @@ export default function Home() {
 
   const searchGames = useSearchGames(search);
 
-  if ((upcomingGames.isLoading, newGames.isLoading, popularGames.isLoading)) {
+  if (upcomingGames.isLoading || newGames.isLoading || popularGames.isLoading) {
     return <Box>Loading....</Box>;
   }
 
@@ -35,7 +30,7 @@ export default function Home() {
     <Box>loading</Box>
   ) : (
     <>
-      <GameList title="New Games">
+      <GameList title="Search results">
         {searchGames.data.results.map((game) => (
           <Game game={game} key={game.id} />
         ))}
@@ -45,7 +40,15 @@ export default function Home() {
 
   return (
     <Container maxW="xl">
-      <Text textAlign="center" fontSize="4xl" fontWeight="bold" mb={10}>
+      <Text
+        cursor="pointer"
+        textAlign="center"
+        fontSize="4xl"
+        fontWeight="bold"
+        mb={10}
+        mt={4}
+        onClick={() => router.reload()}
+      >
         Games
       </Text>
       <Formik
@@ -55,7 +58,7 @@ export default function Home() {
         }}
       >
         {(props) => (
-          <Box maxW="400px" mx="auto">
+          <Box maxW="400px" mx="auto" mb={8}>
             <Form>
               <Field name="query">
                 {({ field }) => (
