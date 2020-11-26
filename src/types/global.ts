@@ -204,3 +204,84 @@ export interface Store {
   url_en?: string;
   url_ru?: null | string;
 }
+
+export interface Game {
+  id?: number;
+  slug?: string;
+  name?: string;
+  name_original?: string;
+  description?: string;
+  metacritic?: null;
+  metacritic_platforms?: any[];
+  released?: Date;
+  tba?: boolean;
+  updated?: Date;
+  background_image?: string;
+  background_image_additional?: null;
+  website?: string;
+  rating?: number;
+  rating_top?: number;
+  ratings?: any[];
+  reactions?: null;
+  added?: number;
+  added_by_status?: AddedByStatus;
+  playtime?: number;
+  screenshots_count?: number;
+  movies_count?: number;
+  creators_count?: number;
+  achievements_count?: number;
+  parent_achievements_count?: number;
+  reddit_url?: string;
+  reddit_name?: string;
+  reddit_description?: string;
+  reddit_logo?: string;
+  reddit_count?: number;
+  twitch_count?: number;
+  youtube_count?: number;
+  reviews_text_count?: number;
+  ratings_count?: number;
+  suggestions_count?: number;
+  alternative_names?: any[];
+  metacritic_url?: string;
+  parents_count?: number;
+  additions_count?: number;
+  game_series_count?: number;
+  user_game?: null;
+  reviews_count?: number;
+  community_rating?: number;
+  saturated_color?: string;
+  dominant_color?: string;
+  parent_platforms?: ParentPlatform[];
+  platforms?: PlatformElement[];
+  stores?: Store[];
+  developers?: Developer[];
+  genres?: any[];
+  tags?: any[];
+  publishers?: any[];
+  esrb_rating?: null;
+  clip?: null;
+  description_raw?: string;
+}
+
+export interface AddedByStatus {
+  toplay?: number;
+}
+
+export interface Developer {
+  id?: number;
+  name?: string;
+  slug?: string;
+  games_count?: number;
+  image_background?: string;
+  domain?: string;
+}
+
+export interface ParentPlatform {
+  platform?: ParentPlatformPlatform;
+}
+
+export interface PlatformElement {
+  platform?: PlatformPlatform;
+  released_at?: Date;
+  requirements?: null;
+}
