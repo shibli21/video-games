@@ -17,3 +17,11 @@ export const fetchUpcomingGames = async () => {
 export const fetchNewGames = async () => {
   return createApiRequest(`${newGames}`, HTTP_METHODS.GET, {});
 };
+
+export const fetchGame = async (_, slug: string) => {
+  return createApiRequest(`games/${slug}`, HTTP_METHODS.GET, {});
+};
+
+export const fetchSearchGames = async (_, slug: string) => {
+  return createApiRequest(`games?search=${slug}`, HTTP_METHODS.GET, {});
+};
