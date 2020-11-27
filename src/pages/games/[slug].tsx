@@ -1,8 +1,9 @@
-import { Badge, Box, Container, Flex, HStack, Text } from "@chakra-ui/react";
-import React from "react";
-import useGame from "../../hooks/useGame";
+import { Badge, Container, Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
+import React from "react";
+import Spinner from "../../components/Spinner";
+import useGame from "../../hooks/useGame";
 
 const Game = () => {
   const router = useRouter();
@@ -10,7 +11,11 @@ const Game = () => {
   const { data: game, isLoading } = useGame(router.query.slug);
 
   if (isLoading) {
-    return <Box>Loading</Box>;
+    return (
+      <Flex justify="center" align="center" minH="100vh">
+        <Spinner />
+      </Flex>
+    );
   }
   return (
     <Container maxW="xl">

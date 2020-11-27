@@ -1,9 +1,17 @@
-import { Box, Container, FormControl, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  FormControl,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
-import { Router, useRouter } from "next/dist/client/router";
+import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import Game from "../components/Game";
 import GameList from "../components/GameList";
+import Spinner from "../components/Spinner";
 import useNewGames from "../hooks/useNewGames";
 import usePopularGames from "../hooks/usePopularGames";
 import useSearchGames from "../hooks/useSearchGames";
@@ -19,7 +27,11 @@ export default function Home() {
   const searchGames = useSearchGames(search);
 
   if (upcomingGames.isLoading || newGames.isLoading || popularGames.isLoading) {
-    return <Box>Loading....</Box>;
+    return (
+      <Flex justify="center" align="center" minH="100vh">
+        <Spinner />{" "}
+      </Flex>
+    );
   }
 
   let searchResults: JSX.Element;
@@ -27,7 +39,7 @@ export default function Home() {
     searchResults = <Box>No data</Box>;
   }
   searchResults = searchGames.isLoading ? (
-    <Box>loading</Box>
+    <Spinner />
   ) : (
     <>
       <GameList title="Search results">
