@@ -25,3 +25,7 @@ export const fetchGame = async (_, slug: string) => {
 export const fetchSearchGames = async (_, slug: string) => {
   return createApiRequest(`games?search=${slug}`, HTTP_METHODS.GET, {});
 };
+
+export const fetchGames = async (_, pageNumber = 1) => {
+  return createApiRequest(`games?page=${pageNumber}`, HTTP_METHODS.GET, {});
+};

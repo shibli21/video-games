@@ -1,4 +1,4 @@
-import { Badge, Container, Flex, Text } from "@chakra-ui/react";
+import { Badge, Box, Container, Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import React from "react";
@@ -19,6 +19,9 @@ const Game = () => {
   }
   return (
     <Container maxW="xl">
+      <Text cursor="pointer" onClick={() => history.back()}>
+        back
+      </Text>
       <Text fontWeight="bold" fontSize="xl">
         {game.name}
       </Text>

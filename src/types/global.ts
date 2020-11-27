@@ -7,6 +7,7 @@ export enum HTTP_METHODS {
 }
 
 export interface Games {
+  cursor?: number;
   count?: number;
   next?: string;
   previous?: null;

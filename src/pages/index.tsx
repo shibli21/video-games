@@ -29,7 +29,7 @@ export default function Home() {
   if (upcomingGames.isLoading || newGames.isLoading || popularGames.isLoading) {
     return (
       <Flex justify="center" align="center" minH="100vh">
-        <Spinner />{" "}
+        <Spinner />
       </Flex>
     );
   }
