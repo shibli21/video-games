@@ -3,7 +3,7 @@ import { fetchNewGames } from "../api/apiCalls";
 import { Games } from "../types/global";
 
 export default function useNewGames() {
-  return useQuery<Games, Error>(["popularGames"], fetchNewGames, {
+  return useQuery<Games, Error>(["newGames"], fetchNewGames, {
     staleTime: 2000,
   });
 }
