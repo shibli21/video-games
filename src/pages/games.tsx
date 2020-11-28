@@ -26,7 +26,15 @@ const games = (props: Props) => {
           {d.results.map((p, i) => (
             <Fragment key={p.name}>
               <Link href={`games/${p.slug}`}>
-                <Flex w="100%" bg="teal.300" mb={2} p={4} cursor="pointer">
+                <Flex
+                  w="100%"
+                  mb={2}
+                  p={4}
+                  border="1px solid"
+                  borderColor="gray.500"
+                  cursor="pointer"
+                  boxShadow="sm"
+                >
                   <Text>{p.name}</Text>
                   <Text>{p.released}</Text>
                 </Flex>

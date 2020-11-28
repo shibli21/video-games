@@ -1,5 +1,14 @@
-import { Badge, Box, Container, Flex, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Container,
+  Flex,
+  Text,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
+import { FaArrowLeft } from "react-icons/fa";
 import Image from "next/image";
 import React from "react";
 import Spinner from "../../components/Spinner";
@@ -19,18 +28,20 @@ const Game = () => {
   }
   return (
     <Container maxW="xl">
-      <Text cursor="pointer" onClick={() => history.back()}>
-        back
-      </Text>
+      <Box my={8}>
+        <FaArrowLeft cursor="pointer" onClick={() => history.back()} />
+      </Box>
       <Text fontWeight="bold" fontSize="xl">
         {game.name}
       </Text>
       <Text>Released : {game.released}</Text>
-      <Flex>
+      <Wrap spacingX="10px" mb={4}>
         {game.platforms.map((p) => (
-          <Badge colorScheme="teal">{p.platform.name}</Badge>
+          <WrapItem>
+            <Badge colorScheme="teal">{p.platform.name}</Badge>
+          </WrapItem>
         ))}
-      </Flex>
+      </Wrap>
       <Image
         src={game.background_image}
         height={5000}

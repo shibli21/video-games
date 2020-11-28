@@ -3,12 +3,16 @@ import {
   Container,
   Flex,
   FormControl,
+  IconButton,
   Input,
+  InputGroup,
+  InputRightElement,
   Text,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import Game from "../components/Game";
 import GameList from "../components/GameList";
 import Spinner from "../components/Spinner";
@@ -69,19 +73,30 @@ export default function Home() {
           setSearch(values.query);
         }}
       >
-        {(props) => (
+        {() => (
           <Box maxW="400px" mx="auto" mb={8}>
             <Form>
               <Field name="query">
                 {({ field }) => (
                   <FormControl>
-                    <Input
-                      {...field}
-                      type="search"
-                      id="query"
-                      placeholder="search games... "
-                      borderRadius={0}
-                    />
+                    <InputGroup>
+                      <Input
+                        {...field}
+                        type="search"
+                        id="query"
+                        placeholder="search games... "
+                        borderRadius={0}
+                      />
+                      <InputRightElement>
+                        <IconButton
+                          aria-label="search"
+                          type="submit"
+                          colorScheme="blue"
+                          borderRadius={0}
+                          icon={<FaSearch />}
+                        />
+                      </InputRightElement>
+                    </InputGroup>
                   </FormControl>
                 )}
               </Field>
