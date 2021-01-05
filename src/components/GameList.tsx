@@ -20,7 +20,7 @@ const GameList = ({ title, children }: GameListProps) => {
           "1fr 1fr 1fr ",
           "1fr 1fr 1fr 1fr",
         ]}
-        gap="20px"
+        gap={10}
       >
         {children}
       </Grid>

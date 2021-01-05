@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/dist/client/router";
+import Head from "next/head";
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import Game from "../components/Game";
@@ -55,72 +56,77 @@ export default function Home() {
   );
 
   return (
-    <Container maxW="xl">
-      <Text
-        cursor="pointer"
-        textAlign="center"
-        fontSize="4xl"
-        fontWeight="bold"
-        mb={10}
-        mt={4}
-        onClick={() => router.reload()}
-      >
-        Games
-      </Text>
-      <Formik
-        initialValues={{ query: "" }}
-        onSubmit={(values) => {
-          setSearch(values.query);
-        }}
-      >
-        {() => (
-          <Box maxW="400px" mx="auto" mb={8}>
-            <Form>
-              <Field name="query">
-                {({ field }) => (
-                  <FormControl>
-                    <InputGroup>
-                      <Input
-                        {...field}
-                        type="search"
-                        id="query"
-                        placeholder="search games... "
-                        borderRadius={0}
-                      />
-                      <InputRightElement>
-                        <IconButton
-                          aria-label="search"
-                          type="submit"
-                          colorScheme="blue"
+    <>
+      <Head>
+        <title>Games</title>
+      </Head>
+      <Container maxW="xl">
+        <Text
+          cursor="pointer"
+          textAlign="center"
+          fontSize="4xl"
+          fontWeight="bold"
+          mb={10}
+          mt={4}
+          onClick={() => router.reload()}
+        >
+          Games
+        </Text>
+        <Formik
+          initialValues={{ query: "" }}
+          onSubmit={(values) => {
+            setSearch(values.query);
+          }}
+        >
+          {() => (
+            <Box maxW="400px" mx="auto" mb={8}>
+              <Form>
+                <Field name="query">
+                  {({ field }) => (
+                    <FormControl>
+                      <InputGroup>
+                        <Input
+                          {...field}
+                          type="search"
+                          id="query"
+                          placeholder="search games... "
                           borderRadius={0}
-                          icon={<FaSearch />}
                         />
-                      </InputRightElement>
-                    </InputGroup>
-                  </FormControl>
-                )}
-              </Field>
-            </Form>
-          </Box>
-        )}
-      </Formik>
-      {search.length > 0 && searchResults}
+                        <InputRightElement>
+                          <IconButton
+                            aria-label="search"
+                            type="submit"
+                            colorScheme="blue"
+                            borderRadius={0}
+                            icon={<FaSearch />}
+                          />
+                        </InputRightElement>
+                      </InputGroup>
+                    </FormControl>
+                  )}
+                </Field>
+              </Form>
+            </Box>
+          )}
+        </Formik>
+        {search.length > 0 && searchResults}
 
-      <GameList title="Upcoming Games">
-        {upcomingGames.data.results.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </GameList>
-      <GameList title="Popular Games">
-        {popularGames.data.results.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </GameList>
-      <GameList title="New Games">
-        {newGames.data.results.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </GameList>
-    </Container>
+        <GameList title="Upcoming Games">
+          {upcomingGames.data.results.map((game) => (
+            <Game game={game} key={game.id} />
+          ))}
+        </GameList>
+        <GameList title="Popular Games">
+          {popularGames.data.results.map((game) => (
+            <Game game={game} key={game.id} />
+          ))}
+        </GameList>
+        <GameList title="New Games">
+          {newGames.data.results.map((game) => (
+            <Game game={game} key={game.id} />
+          ))}
+        </GameList>
+      </Container>
+    </>
   );
 }

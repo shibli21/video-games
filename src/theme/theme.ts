@@ -4,9 +4,9 @@ const theme = extendTheme({
   styles: {
     global: (props) => ({
       "html, body": {
-        color: props.colorMode === "dark" ? "white" : "gray.800",
-        bg: props.colorMode === "dark" ? "gray.800" : "white",
-        fontFamily: "raleway",
+        color: props.colorMode === "dark" ? "white" : "#1F2128",
+        bg: props.colorMode === "dark" ? "#1F2128" : "white",
+        fontFamily: "Skranji",
       },
     }),
   },

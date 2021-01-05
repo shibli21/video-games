@@ -11,18 +11,31 @@ interface Props {
 const Game: React.FC<Props> = ({ game }) => {
   return (
     <Link href={`games/${game.slug}`}>
-      <Box cursor="pointer" boxShadow="lg" borderRadius={5} overflow="hidden">
+      <Box
+        borderRadius={"30px"}
+        fontFamily="poppins"
+        cursor="pointer"
+        boxShadow="sm"
+        overflow="hidden"
+        bg="#242731"
+        _hover={{
+          boxShadow: "2xl",
+        }}
+      >
         {game.background_image && (
           <Image
             src={game.background_image}
-            height={200}
+            height={250}
             width={400}
             objectFit="cover"
           />
         )}
-        <Box p={4}>
-          <Text fontWeight="semibold">{game.name}</Text>
-          <Text>{game.released}</Text>
+        <Box px={6} pb={5} pt={3}>
+          <Text fontWeight="semibold" fontSize="lg">
+            {game.name}
+          </Text>
+          <Text fontSize="sm">Release date : {game.released}</Text>
+          <Text>{game.tba}</Text>
         </Box>
       </Box>
     </Link>
